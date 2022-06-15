@@ -1,0 +1,30 @@
+#custstart
+Janice Worthz
+911 East Washington St.
+Granger, 
+IN 
+
+46530
+(555) 0545 654
+Jannyw@outlook.com
+#custend
+#invoicestart
+105567
+$10,654.89
+2021/12/01
+#invoiceend
+#custstart
+Gillian Flynn
+46 Monroe St.
+Martinsville, 
+Virginia
+
+24112
+(454) 9876 345
+flynng@gmail.com
+#custend
+#invoicestart
+105965
+$1,200.00
+2021/12/10
+#invoiceend
