@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace TakeawayCodingTask
@@ -24,7 +22,33 @@ namespace TakeawayCodingTask
         /// <returns></returns>
         public IEnumerable<string> HonorRoll(IEnumerable<TestScore> maths, IEnumerable<TestScore> science)
         {
+            var honorStudents = new ConcurrentDictionary<string, int>();
+            var potentialHonorStudents = new ConcurrentDictionary<string, int>();
 
+            Parallel.ForEach(maths, student => {
+                if (student.Score >= 90)
+                {
+                    honorStudents.TryAdd(student.StudentName, student.Score);
+                }
+                else if (student.Score >= 80 && student.Score < 90)
+                {
+                    potentialHonorStudents.TryAdd(student.StudentName, student.Score);
+                }
+            });
+
+            Parallel.ForEach(science, student => {
+                if (student.Score >= 90 && !honorStudents.ContainsKey(student.StudentName))
+                {
+                    honorStudents.TryAdd(student.StudentName, student.Score);
+                }
+                else if (student.Score >= 80 &&
+                           potentialHonorStudents.ContainsKey(student.StudentName))
+                {
+                    honorStudents.TryAdd(student.StudentName, student.Score);
+                }
+            });
+
+            return honorStudents.Keys;
         }
     }
 }

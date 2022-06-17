@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TakeawayCodingTask
 {
@@ -24,7 +21,21 @@ namespace TakeawayCodingTask
         /// <returns></returns>
         public IEnumerable<string> HonorRoll(IEnumerable<TestScore> maths, IEnumerable<TestScore> science)
         {
+            var mathScores = maths.ToList();
+            var scienceScores = science.ToList();
 
+            var studentNames = mathScores.Where(x => x.Score >= 80).Select(x => x.StudentName).
+                Intersect(scienceScores.Where(x => x.Score >= 80).Select(x => x.StudentName)).ToList();
+
+            mathScores.Where(x => x.Score >= 90).Select(x => x.StudentName).ToList().ForEach(x => {
+                if (!studentNames.Contains(x)) studentNames.Add(x);
+            }
+            );
+            scienceScores.Where(x => x.Score >= 90).Select(x => x.StudentName).ToList().ForEach(x => {
+                if (!studentNames.Contains(x)) studentNames.Add(x);
+            }
+            );
+            return studentNames;
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TakeawayCodingTask
+﻿namespace TakeawayCodingTask
 {
     internal class Task_04
     {
@@ -42,6 +36,8 @@ namespace TakeawayCodingTask
 
         public void CustomerImportToCommonFormat(string inputFile, string outputFile)
         {
+            //implemented factory method with DI to decide processing class object based on extension. Easy to extend.
+            //Please refer to Program.cs fro starting point and Task4 folder.
 
         }
     }

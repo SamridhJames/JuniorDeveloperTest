@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TakeawayCodingTask
 {
-
     public class Task_01
     {
         /// <summary>
@@ -20,9 +15,21 @@ namespace TakeawayCodingTask
         /// </summary>
         /// <param name="limit"></param>
         /// <returns></returns>
-        IEnumerable<string> FizzBuzz(int limit)
+        public IEnumerable<string> FizzBuzz(int limit)
         {
-
+			var result = new List<string>();
+            for(var i = 1; i<= limit; i++){
+                if (i % 3== 0 && i % 5 ==0){
+                    result.Add("FizzBuzz");
+                }else if (i % 3== 0){
+                    result.Add("Fizz");
+                }else if (i % 5== 0){
+                    result.Add("Buzz");
+                }else{
+                    result.Add(i.ToString());
+                }
+            }
+            return result;
         }
     }
 }
